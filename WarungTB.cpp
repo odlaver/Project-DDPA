@@ -40,6 +40,22 @@ int totalPesanan(int pilihan[], int jumlah[], int jumlahPesanan) {
 }
 
 int main(){
+	int pilihan[50], jumlah[50];
+	int jumlahPesanan = 0;
+	char lagi;
+	do {
+		tampilkanMenu();
+		cout<< "Masukkan Kode Jajanan Yang Ingin DIbeli : ";
+		cin>> pilihan[jumlahPesanan];
+		cout<< "Masukkan Jumlah : ";
+		cin>> jumlah[jumlahPesanan];
 
+		jumlahPesanan++;
+
+		cout << "Apakah ingin menambah pesanan? (y/n) : ";
+		cin>>lagi;
+	} while (lagi== 'y' || lagi == 'Y');
+
+	totalPesanan(pilihan, jumlah, jumlahPesanan);
     return 0;
 }
