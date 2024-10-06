@@ -39,7 +39,7 @@ int totalPesanan(int pilihan[], int jumlah[], int jumlahPesanan) {
 	return totalHarga;
 }
 
-int main(){
+    int main(){
 	int pilihan[50], jumlah[50];
 	int jumlahPesanan = 0;
 	char lagi;
@@ -54,8 +54,20 @@ int main(){
 
 		cout << "Apakah ingin menambah pesanan? (y/n) : ";
 		cin>>lagi;
-	} while (lagi== 'y' || lagi == 'Y');
+	} while (lagi == 'y' || lagi == 'Y');
+    return 0; 
+}
+	int pengurangan(int a, int b) {
+    int hasil = a - b;
+    return hasil;
+    }
 
-	totalPesanan(pilihan, jumlah, jumlahPesanan);
+int pengurangan(){
+
+    int x = 10, y = 5;
+    int jumlah = pengurangan(x, y);
+    cout << "Hasil pengurangan : " << jumlah << endl;
+
     return 0;
 }
+    
