@@ -50,8 +50,10 @@ int uangKembalian(int totalHarga, int uang) {
 			int tambahan;
 			cin >> tambahan;
 			uang += tambahan;
-			kembalian = uang - totalHarga;
-			cout << "Kembalian Uang Anda: Rp. " << kembalian << endl;
+			if(uang > totalHarga){
+			    kembalian = uang - totalHarga;
+			    cout << "Kembalian Uang Anda: Rp. " << kembalian << endl;
+			}
 		} else if (uang == totalHarga) {
 			cout << "Uang Anda Pas." << endl;
 			kembalian = 0;
