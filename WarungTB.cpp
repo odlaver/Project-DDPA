@@ -32,42 +32,52 @@ int totalPesanan(int pilihan[], int jumlah[], int jumlahPesanan) {
 		totalHarga += harga;
 		cout << jajanan[indexJajanan] << "\t" << jumlah[i] << "\t    Rp. " << harga << endl;
 	}
-
 	cout << "=====================================\n";
 	cout << "Total Harga: \tRp. " << totalHarga << endl;
 	cout << "=====================================\n";
 	return totalHarga;
 }
 
-    int main(){
-	int pilihan[50], jumlah[50];
+//reval menambahkan kembalian uang
+void uangKembalian(int totalHarga) {
+	int uang, kembalian;
+	do {
+		cout << "Masukkan Uang Anda: Rp. ";
+		cin >> uang;
+		if (uang < totalHarga) {
+			cout << "Uang Anda Kurang Kocak!" << endl;
+		} else if (uang == totalHarga) {
+			cout << "Uang Anda Pas, Terima Kasih!";
+		} else {
+			kembalian = uang - totalHarga;
+			cout << "Uang Anda: Rp. " << uang << endl;
+			cout << "Kembalian Uang Anda: Rp. " << kembalian << endl;
+			cout << "Terima Kasih!";
+		}
+	} while (uang < totalHarga);
+}
+
+int main() {
+	int pilihan[100], jumlah[100];
 	int jumlahPesanan = 0;
+	int uang;
 	char lagi;
 	do {
 		tampilkanMenu();
-		cout<< "Masukkan Kode Jajanan Yang Ingin DIbeli : ";
-		cin>> pilihan[jumlahPesanan];
-		cout<< "Masukkan Jumlah : ";
-		cin>> jumlah[jumlahPesanan];
+		cout << "Masukkan Kode Jajanan yang Ingin Dibeli: ";
+		cin >> pilihan[jumlahPesanan];
+		cout << "Masukkan Jumlah: ";
+		cin >> jumlah[jumlahPesanan];
 
 		jumlahPesanan++;
 
-		cout << "Apakah ingin menambah pesanan? (y/n) : ";
-		cin>>lagi;
+		cout << "Apakah ingin menambah pesanan? (y/n): ";
+		cin >> lagi;
+
 	} while (lagi == 'y' || lagi == 'Y');
-    return 0; 
+
+	int totalHarga = totalPesanan(pilihan, jumlah, jumlahPesanan);
+	uangKembalian(totalHarga);
+	return 0;
 }
-	int pengurangan(int a, int b) {
-    int hasil = a - b;
-    return hasil;
-    }
 
-int pengurangan(){
-
-    int x = 10, y = 5;
-    int jumlah = pengurangan(x, y);
-    cout << "Hasil pengurangan : " << jumlah << endl;
-
-    return 0;
-}
-    
