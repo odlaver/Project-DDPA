@@ -41,21 +41,24 @@ int totalPesanan(int pilihan[], int jumlah[], int jumlahPesanan) {
 //reval menambahkan kembalian uang
 int uangKembalian(int totalHarga, int uang) {
 	int kembalian = 0;
+	int kurang = 0;
 	do {
 		if (uang < totalHarga) {
-			cout << "Uang Anda Kurang Kocak!" << endl;
+		    kurang = totalHarga - uang;
+			cout << "Uang Anda Kurang " << kurang << " Kocak." << endl;
 			cout << "Masukkan Uang Tambahan: Rp. ";
 			int tambahan;
 			cin >> tambahan;
 			uang += tambahan;
+			kembalian = uang - totalHarga;
+			cout << "Kembalian Uang Anda: Rp. " << kembalian << endl;
 		} else if (uang == totalHarga) {
-			cout << "Uang Anda Pas, Terima Kasih!" << endl;
+			cout << "Uang Anda Pas." << endl;
 			kembalian = 0;
 		} else {
 			kembalian = uang - totalHarga;
 			cout << "Uang Anda: Rp. " << uang << endl;
 			cout << "Kembalian Uang Anda: Rp. " << kembalian << endl;
-			cout << "Terima Kasih!" << endl;
 		}
 	} while (uang < totalHarga);
 	return kembalian;
@@ -90,7 +93,7 @@ int main() {
 		sisaKembalian = uangKembalian(totalHarga, sisaKembalian);
 
 		if (sisaKembalian > 0) {
-			cout << " Apakah Anda Ingin Menambah Jajanan dengan Sisa Uang Rp. " << sisaKembalian << "? (y/n): ";
+			cout << "Apakah Anda Ingin Menambah Jajanan dengan Sisa Uang Rp. " << sisaKembalian << "? (y/n): ";
 			cin >> lagi;
 		} else {
 			lagi = 'n' || 'N';
