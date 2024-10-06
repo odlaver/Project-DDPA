@@ -39,45 +39,70 @@ int totalPesanan(int pilihan[], int jumlah[], int jumlahPesanan) {
 }
 
 //reval menambahkan kembalian uang
-void uangKembalian(int totalHarga) {
-	int uang, kembalian;
+int uangKembalian(int totalHarga, int uang) {
+	int kembalian = 0;
 	do {
-		cout << "Masukkan Uang Anda: Rp. ";
-		cin >> uang;
 		if (uang < totalHarga) {
 			cout << "Uang Anda Kurang Kocak!" << endl;
+			cout << "Masukkan Uang Tambahan: Rp. ";
+			int tambahan;
+			cin >> tambahan;
+			uang += tambahan;
 		} else if (uang == totalHarga) {
-			cout << "Uang Anda Pas, Terima Kasih!";
+			cout << "Uang Anda Pas, Terima Kasih!" << endl;
+			kembalian = 0;
 		} else {
 			kembalian = uang - totalHarga;
 			cout << "Uang Anda: Rp. " << uang << endl;
 			cout << "Kembalian Uang Anda: Rp. " << kembalian << endl;
-			cout << "Terima Kasih!";
+			cout << "Terima Kasih!" << endl;
 		}
 	} while (uang < totalHarga);
+	return kembalian;
 }
 
 int main() {
 	int pilihan[100], jumlah[100];
 	int jumlahPesanan = 0;
-	int uang;
+	int uang, totalHarga, sisaKembalian;
 	char lagi;
+
+	cout << "Masukkan Uang Anda: Rp. ";
+	cin >> uang;
+	sisaKembalian = uang;
+
 	do {
-		tampilkanMenu();
-		cout << "Masukkan Kode Jajanan yang Ingin Dibeli: ";
-		cin >> pilihan[jumlahPesanan];
-		cout << "Masukkan Jumlah: ";
-		cin >> jumlah[jumlahPesanan];
+		do {
+			tampilkanMenu();
+			cout << "Masukkan Kode Jajanan yang Ingin Dibeli: ";
+			cin >> pilihan[jumlahPesanan];
+			cout << "Masukkan Jumlah: ";
+			cin >> jumlah[jumlahPesanan];
 
-		jumlahPesanan++;
+			jumlahPesanan++;
 
-		cout << "Apakah ingin menambah pesanan? (y/n): ";
-		cin >> lagi;
+			cout << "Apakah ingin menambah pesanan? (y/n): ";
+			cin >> lagi;
 
-	} while (lagi == 'y' || lagi == 'Y');
+		} while (lagi == 'y' || lagi == 'Y');
 
-	int totalHarga = totalPesanan(pilihan, jumlah, jumlahPesanan);
-	uangKembalian(totalHarga);
+		totalHarga = totalPesanan(pilihan, jumlah, jumlahPesanan);
+		sisaKembalian = uangKembalian(totalHarga, sisaKembalian);
+
+		if (sisaKembalian > 0) {
+			cout << " Apakah Anda Ingin Menambah Jajanan dengan Sisa Uang Rp. " << sisaKembalian << "? (y/n): ";
+			cin >> lagi;
+		} else {
+			lagi = 'n' || 'N';
+		}
+
+		if (lagi == 'y' || 'Y') {
+			jumlahPesanan = 0;
+		}
+
+	} while ((lagi == 'y' ||  lagi == 'Y') && sisaKembalian > 0);
+
+	cout << "Terima Kasih telah Belanja di Warung Tiga Belas!" << endl;
+
 	return 0;
 }
-
